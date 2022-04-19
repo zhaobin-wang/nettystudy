@@ -15,3 +15,14 @@ java.io.IOException: Connection reset by peer
 
 
 多释放了一次
+
+git push 出现
+empty repository
+    解决--idea中点击push后，如果发现，master-> Empty repository，不存在仓库的问题，这时候我们打开git bash，输入
+        cd 刚才工程的路径
+        比如 cd d:\***
+        然后输入git commit -m "Initial Commit"初始化，等出现代码段提示后即可关闭
+        而后点击push，会发现push已经出现define remote的字样
+
+    push 代码
+        1.选定远程仓库    name:netty    ulr:https://github.com/zhaobin-wang/nettystudy/

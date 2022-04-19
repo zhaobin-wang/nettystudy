@@ -1,10 +1,10 @@
 
-E
-java:S1148'"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ä¶†¯þ/
 I
 java:S1602",Remove useless curly braces around statement(¥—ýð8²Ÿý®þ/
+E
+java:S1148'"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ä¶†¯þ/
+Z	java:S106!"9Replace this use of System.out or System.err by a logger.(Ó‡Ä½üÿÿÿÿ8ä¶†¯þ/
 D
 java:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ8²Ÿý®þ/
-Z	java:S106!"9Replace this use of System.out or System.err by a logger.(Ó‡Ä½üÿÿÿÿ8ä¶†¯þ/
 l
 java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(ñÀ¹ëùÿÿÿÿ8‘Û÷®þ/
