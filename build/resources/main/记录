@@ -1,0 +1,17 @@
+io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
+
+警告: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.io.IOException: Connection reset by peer
+你主机中的软件中止了一个正在建立的链接
+
+
+    是因为客服端停止了，channel中断链接
+    f.channel().closeFuture().sync();        要堵塞住，保证客户端服务端都是活着
+
+
+
+    客服端--->发送信息--->服务端---->服务端给客户端反馈信息
+
+
+
+多释放了一次
