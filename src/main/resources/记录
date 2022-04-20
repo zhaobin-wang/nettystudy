@@ -30,3 +30,14 @@ empty repository
     分支 study
 
     更好进口量
+
+    问题提描述  1.Unable to access 'https://github.com/zhaobin-wang/nettystudy/': Failed to connect to github.com port 443: Operation timed out
+                                2.Push failed
+                				Remote error:
+                				You can't push to git://github.com/zhaobin-wang/nettystudy.git
+                				Use https://github.com/zhaobin-wang/nettystudy.git
+    问题解决
+        wangzhaobin@MacBook-Pro nettyStudy % git remote rm netty
+        wangzhaobin@MacBook-Pro nettyStudy % git remote add netty git@github.com:zhaobin-wang/nettystudy.git
+
+
