@@ -41,3 +41,10 @@ empty repository
         wangzhaobin@MacBook-Pro nettyStudy % git remote add netty git@github.com:zhaobin-wang/nettystudy.git
 
 
+
+
+    20220421
+        1.重构代码，把之前写在main里面的提取到一个方法
+        2.窗口显示完毕后调用 new Client.connect();
+
+
