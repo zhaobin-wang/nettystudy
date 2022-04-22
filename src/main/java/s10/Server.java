@@ -1,4 +1,4 @@
-package s09;
+package s10;
 
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -14,6 +14,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.ReferenceCountUtil;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 /**
@@ -42,7 +43,8 @@ public class Server {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             System.out.println(Thread.currentThread().getId());
                             ChannelPipeline pl = ch.pipeline();//责任链
-                            pl.addLast(new ServerChildHandler());
+                            pl.addLast(new TankMsgDecoder())
+                                    .addLast(new ServerChildHandler());
 
                             System.out.println(ch);
                         }
@@ -78,27 +80,34 @@ class ServerChildHandler extends ChannelInboundHandlerAdapter{//SimpleChannelInb
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf = null;
+        //ByteBuf buf = null;
 
         try {
-            buf = (ByteBuf)msg;
-            byte[] bytes = new byte[buf.readableBytes()];
-            buf.getBytes(buf.readerIndex(), bytes);
-
-            String s = new String(bytes);
-
-            ServerFrame.INSTANCE.updateClientMsg(s);
-
-            if(s.equals("_bye_")){
-                ServerFrame.INSTANCE.updateServerMsg("客户端请求退出");
-                Server.clients.remove(ctx.channel());
-                ctx.close();
-            }else{
-                Server.clients.writeAndFlush(msg);
-            }
+            TankMsg tm = (TankMsg) msg;
+            System.out.println(tm);
         } finally {
-
+            ReferenceCountUtil.release(msg);
         }
+
+//        try {
+//            buf = (ByteBuf)msg;
+//            byte[] bytes = new byte[buf.readableBytes()];
+//            buf.getBytes(buf.readerIndex(), bytes);
+//
+//            String s = new String(bytes);
+//
+//            ServerFrame.INSTANCE.updateClientMsg(s);
+//
+//            if(s.equals("_bye_")){
+//                ServerFrame.INSTANCE.updateServerMsg("客户端请求退出");
+//                Server.clients.remove(ctx.channel());
+//                ctx.close();
+//            }else{
+//                Server.clients.writeAndFlush(msg);
+//            }
+//        } finally {
+//
+//        }
     }
 
     @Override
